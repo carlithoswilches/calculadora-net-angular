@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Calculadora.API/Calculadora.API.csproj" />
+  <Project Path="Calculadora.BLL/Calculadora.BLL.csproj" />
+  <Project Path="Calculadora.Entities/Calculadora.Entities.csproj" />
+</Solution>
