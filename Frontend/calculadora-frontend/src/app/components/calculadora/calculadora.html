@@ -1,18 +1,38 @@
-<!-- Contenedor principal de toda la calculadora -->
 <div class="calculadora-container">
   <h2>Calculadora</h2>
 
-  <!-- Input donde el usuario escribe la expresión completa, ej: 3 + 5 * (2 - 8) -->
-  <input
-    type="text"
-    class="expresion-input"
-    placeholder="Escribe una expresión, ej: 3 + 5 * (2 - 8)"
-  />
+  <!-- Pantalla de solo lectura: muestra la expresión que el usuario arma con los botones -->
+  <div class="pantalla">{{ expresion || '0' }}</div>
 
-  <!-- Botón que más adelante disparará el cálculo (aún sin lógica) -->
-  <button class="calcular-btn">Calcular</button>
+  <!-- Grid de botones: números, operadores y paréntesis -->
+  <div class="botones-grid">
+    <button (click)="agregarCaracter('(')">(</button>
+    <button (click)="agregarCaracter(')')">)</button>
+    <button (click)="borrarUltimo()">⌫</button>
+    <button (click)="limpiar()">C</button>
 
-  <!-- Zona donde luego se mostrará el resultado -->
+    <button (click)="agregarCaracter('7')">7</button>
+    <button (click)="agregarCaracter('8')">8</button>
+    <button (click)="agregarCaracter('9')">9</button>
+    <button (click)="agregarCaracter('/')">/</button>
+
+    <button (click)="agregarCaracter('4')">4</button>
+    <button (click)="agregarCaracter('5')">5</button>
+    <button (click)="agregarCaracter('6')">6</button>
+    <button (click)="agregarCaracter('*')">*</button>
+
+    <button (click)="agregarCaracter('1')">1</button>
+    <button (click)="agregarCaracter('2')">2</button>
+    <button (click)="agregarCaracter('3')">3</button>
+    <button (click)="agregarCaracter('-')">-</button>
+
+    <button (click)="agregarCaracter('0')">0</button>
+    <button (click)="agregarCaracter('.')">.</button>
+    <button class="btn-igual">=</button>
+    <button (click)="agregarCaracter('+')">+</button>
+  </div>
+
+  <!-- Zona donde se mostrará el resultado (aún sin lógica de cálculo) -->
   <div class="resultado-container">
     <span class="resultado-label">Resultado:</span>
     <span class="resultado-valor">-</span>
