@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calculadora',
@@ -8,23 +9,30 @@ import { Component } from '@angular/core';
   styleUrl: './calculadora.css'
 })
 export class CalculadoraComponent {
-  // Guarda la expresión que se va armando con los clics del usuario
-  // (reemplaza al input de texto libre)
   expresion: string = '';
+  resultado: string = '-'; // lo que se muestra en "Resultado"
 
-  // Se ejecuta cada vez que el usuario toca un botón de número/operador/paréntesis
-  // Simplemente concatena el carácter al final de la expresión actual
+  constructor(private http: HttpClient) {}
+
   agregarCaracter(caracter: string): void {
     this.expresion += caracter;
   }
 
-  // Borra el último carácter (botón ⌫), útil si el usuario se equivoca
   borrarUltimo(): void {
     this.expresion = this.expresion.slice(0, -1);
   }
 
-  // Limpia toda la expresión (botón C)
   limpiar(): void {
     this.expresion = '';
+    this.resultado = '-';
+  }
+
+  // Envía la expresión al backend y muestra el resultado (o el error)
+  calcular(): void {
+    this.http.post<any>('http://localhost:5160/api/calculadora', { expresion: this.expresion })
+      .subscribe({
+        next: (res) => this.resultado = res.resultado,
+        error: (err) => this.resultado = err.error?.mensaje ?? 'Error'
+      });
   }
 }

@@ -28,13 +28,13 @@
 
     <button (click)="agregarCaracter('0')">0</button>
     <button (click)="agregarCaracter('.')">.</button>
-    <button class="btn-igual">=</button>
+    <button class="btn-igual" (click)="calcular()">=</button>
     <button (click)="agregarCaracter('+')">+</button>
   </div>
 
   <!-- Zona donde se mostrará el resultado (aún sin lógica de cálculo) -->
   <div class="resultado-container">
     <span class="resultado-label">Resultado:</span>
-    <span class="resultado-valor">-</span>
+    <span class="resultado-valor">{{ resultado }}</span>
   </div>
 </div>
